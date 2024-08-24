@@ -1,0 +1,45 @@
+{
+  "name": "PubKey Link",
+  "description": "PubKey Link running on Heroku",
+  "logo": "https://github.com/pubkeyapp.png",
+  "stack": "container",
+  "env": {
+    "JWT_SECRET": {
+      "generator": "secret"
+    },
+    "CLOAK_KEYCHAIN": {
+      "description": "The Cloak keychain to use for encrypting fields in the database. (https://github.com/47ng/cloak)",
+      "required": true
+    },
+    "CLOAK_MASTER_KEY": {
+      "description": "The Cloak master key to use for encrypting fields in the database. (https://github.com/47ng/cloak)",
+      "required": true
+    },
+    "AUTH_SOLANA_ADMIN_IDS": {
+      "description": "Comma-separated list of Solana addresses that will get the admin role after registration.",
+      "value": "add-your-pubkey-id-here",
+      "required": true
+    },
+    "API_URL": {
+      "value": "https://your-api-url.herokuapp.com/api",
+      "description": "The URL of the API to use for authentication and authorization.",
+      "required": true
+    }
+  },
+  "addons": [
+    {
+      "plan": "heroku-postgresql",
+      "as": "DATABASE"
+    },
+    {
+      "plan": "heroku-redis",
+      "as": "REDIS"
+    }
+  ],
+  "formation": {
+    "web": {
+      "image": "ghcr.io/pubkeyapp/pubkey-link:dev"
+    }
+  }
+}
+

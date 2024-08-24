@@ -1,0 +1,17 @@
+setup:
+  addons:
+    - plan: heroku-postgresql
+      as: DATABASE
+    - plan: heroku-redis
+      as: REDIS
+
+build:
+  docker:
+    web: Dockerfile
+
+config:
+  JWT_SECRET: {{JWT_SECRET}}
+  CLOAK_KEYCHAIN: {{CLOAK_KEYCHAIN}}
+  CLOAK_MASTER_KEY: {{CLOAK_MASTER_KEY}}
+  AUTH_SOLANA_ADMIN_IDS: {{AUTH_SOLANA_ADMIN_IDS}}
+  API_URL: {{API_URL}}
